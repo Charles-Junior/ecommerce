@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="span3">
+        {{parent()}}
+        </div>
+        <div class="span9">
+   
+        <h3>  Ajouter un produit </h3>
+            <hr>
+             <form action="{{ path('add')}}" method="POST">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+             </form>
+        </div>            
+    </div>
+</div> 
+{% endblock %}
+
+{% block footer %}
+        {{ parent() }}
+{% endblock %}

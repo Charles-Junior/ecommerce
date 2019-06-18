@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+   
+    <img src="http://www.multimaths.net/images/404.png" width="90%" height="90%">
+     <i><h4 align="center">Aucun résultat pour la recherche suivante: {{ recherche }}</h4><i>
+{% endblock %}
+ {% block footer %}
+        {{ parent() }}
+    {% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="span3">
+        {{parent()}}
+        </div>
+        <div class="span9">
+                    <h3>Détails de ma commande</h3>
+                    <hr>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Nom</th>
+                                <th>Catégorie</th>
+                                <th>Description</th>
+                                <th>Quantité</th>
+                                <th>Prix HT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for infos in infos %}
+                            <tr>
+                                <td> 
+                                    <img src="{{ infos.produit.image.url }}" alt="{{ infos.produit.image.alt }}" width="100" height="100">
+                                </td>
+                                <td> 
+                                    {{ infos.produit.name }}
+                                </td>
+                                <td>
+                                    {{ infos.produit.categorie.name }}
+                                </td>
+                                <td>
+                                    {{ infos.produit.content }}
+                                </td>
+                                <td>
+                                    {{ infos.quantite }} Kg
+                                </td>
+                                <td>
+                                    {{ infos.produit.prix|total(infos.quantite) }} €
+                                </td>
+
+                               
+                            </tr>
+                        {% endfor %}    
+                        </tbody>
+                    </table>
+        </div>            
+    </div>
+</div>        
+        {% endblock %}
+
+ {% block footer %}
+        {{ parent() }}
+    {% endblock %}

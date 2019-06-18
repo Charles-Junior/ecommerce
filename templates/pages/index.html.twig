@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger" id="divMessage">
+                    {{ message }}
+                </div>
+    {% endfor %}
+    {% for message in app.flashes('success') %}
+                <div class="alert alert-success" id="divMessage">
+                    {{ message }}
+                </div>
+    {% endfor %}
+
+<div class="container">
+    <div class="row">
+        <div class="span3">
+        {{parent()}}
+        <h3> Catégories </h3>
+        <hr>
+        {% for categorie in categories %}
+            <a href="{{ path('tri',{'id': categorie.id}) }}">{{ categorie.name }}</a> 
+             <span class="badge badge-pill">{{ categorie.produits|length }} </span>
+             <br>
+        {% endfor %}
+        </div>
+        <div class="span9">
+    
+            <ul class="thumbnails">
+            {% for produit in produits %}
+                <li class="span3">
+                    <div class="thumbnail">
+                        <img src="{{ produit.image.url }}" alt="{{ produit.image.alt }}" width="300" height="300">
+                        <div class="caption">
+                            <h4>{{ produit.name }}</h4>
+                            <p>{{ produit.prix}} €/Kg</p>
+                            <a class="btn btn-primary" href="{{ path('details',{'id': produit.id}) }}">Plus d'infos</a>
+                            <a class="btn btn-success" href="{{ path('addPanier',{'id': produit.id}) }}">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </li> 
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+ {% block footer %}
+        {{ parent() }}
+ {% endblock %}

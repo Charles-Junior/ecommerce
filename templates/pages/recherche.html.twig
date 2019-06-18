@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+
+        <div class="span9">
+            {% for produit in produit %}
+                
+            <ul class="thumbnails">
+                <li class="span3">
+                    <div class="thumbnail">
+                        <img src="{{ produit.image.url }}" alt="{{ produit.image.alt }}" width="300" height="300">
+                        <div class="caption">
+                            <h4>{{ produit.name }}</h4>
+                            <p>{{ produit.prix }} €</p>
+                            <a class="btn btn-primary" href="{{ path('details',{'id': produit.id}) }}">Plus d'infos</a>
+                            <a class="btn btn-success" href="panier.php">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </li> 
+            </ul>
+            
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+ {% block footer %}
+        {{ parent() }}
+    {% endblock %}

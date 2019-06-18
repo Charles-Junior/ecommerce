@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block titre %}Ecommerce Fruits & légumes - By OmegaVision{% endblock %}</title>
+        <meta name="keywords" content="{% block motsCles %}{% endblock %}" />
+        <meta name="description" content="{% block description %}{% endblock %}" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-responsive.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}" />
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body>
+        {% block header %}
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
+                        <a class="brand" href="/">OmegaVision</a>
+                            <div class="nav-collapse collapse">
+                                <form action="{{ path("recherche") }}" method="get" class="navbar-form form-search pull-right">
+                                    <input id="Search" name="Search" type="text" class="input-medium search-query">
+                                    <button type="submit" class="btn">Rechercher</button>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block body %}
+
+                    <h3> Menu </h3>
+                     <hr>
+                     {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('add') }}"> Nouveau produit </a> 
+                        <br>
+                        <a href="{{ path('panier') }}"> Mon panier </a> 
+                        <br>
+                        <a href="{{ path('commandes') }}"> Mes commandes </a> 
+                        <br>
+                        <a href="{{ path('historique') }}"> Mes produits </a> 
+                        <br>
+                        <a href="{{ logout_path(key = null) }}"> Déconnexion </a>   
+                     {% else %}
+                        <a href="{{ absolute_url('/register') }}"> Inscription </a>
+                        <br>
+                        <a href="{{ path('fos_user_security_login') }}"> Connexion </a>
+                     {% endif %}  
+                     <br><br> <br><br> 
+        {% endblock %}
+
+        {% block footer %}
+            <hr />
+	        <footer id="footer" class="vspace20">
+		        <div class="container">
+			        <div class="row">
+				        <div class="span4 offset1">
+					        <h4>Informations</h4>
+					            <ul class="nav nav-stacked">
+						            <li><a href="#">CGV</a>
+						            <li><a href="#">Mentions légales</a>
+					            </ul>
+				        </div> 
+
+				        <div class="span4">
+					        <h4>Notre entrepôt</h4>
+					            <p><i class="icon-map-marker"></i>&nbsp;Paris 75 000 - 3 rue des jardins</p>
+				        </div>
+
+				        <div class="span2">
+					        <h4>Nous contacter</h4>
+					            <p><i class="icon-phone"></i>&nbsp;Tel: 02 35 00 00 00</p>
+					            <p><i class="icon-print"></i>&nbsp;Fax: 02 35 00 00 00</p>
+				        </div>
+			        </div>
+
+			            <div class="row">
+				            <div class="span4">
+					            <p>&copy; Copyright 2014 - OmegaVision</p>
+				            </div>
+			            </div>
+		            </div>
+	        </footer>	
+
+	        <script src="../js/jquery-1.10.0.min.js"></script>
+	        <script src="../js/bootstrap.js"></script>
+
+        {% endblock %}
+
+
+        <script>
+
+            function timeOutMessage()
+            {
+                document.getElementById("divMessage").style.display="none";
+            }
+
+            setTimeout(timeOutMessage, 5000)
+
+        </script>
+      
+    </body>
+</html>

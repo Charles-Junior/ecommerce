@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+	<div class="container">
+		<div class="row">
+            {#<?php include '../layout/col-left.php'; ?>#}
+			
+			<div class="span9">
+				<div class="row">
+					<div class="span5">
+						<img src="{{ produit.image.url }}" alt="{{ produit.image.alt }}" width="470" height="310">
+					</div>
+
+					<div class="span4">
+						<h4>{{ produit.name }}</h4>
+						<h5>{{ produit.categorie.name }}</h5>
+						<p>{{ produit.content}}</p>
+						<h4>{{ produit.prix }} €</h4>
+						<form action="{{ path('addPanier', {'id':produit.id}) }}" method="POST">
+					
+
+							<select name="qte" class="span1">
+								{% for i in 1..10 %}
+                    				<option value="{{i}}">
+                        				{{i}}
+                    				</option>
+                    			{% endfor %}
+							</select>
+
+							<div>
+							    <button class="btn btn-primary">Ajouter au panier</button>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+ {% block footer %}
+        {{ parent() }}
+    {% endblock %}

@@ -1,0 +1,10 @@
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: App\Entity\User
+    from_email:
+        address: "mr.blaise.972@.com"
+        sender_name: "mr.blaise.972@.com"
+framework:
+    templating:
+        engines: ['twig', 'php']        
