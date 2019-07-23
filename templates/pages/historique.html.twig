@@ -56,7 +56,7 @@
                                     <a href="{{ path('update',{'id': produits.id}) }}"><i class="icon-edit"></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{ path('delete',{'id': produits.id}) }}"><i class="icon-trash"></i></a>
+                                    <a href="{{ path('delete',{'id': produits.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer le produit ?')"><i class="icon-trash"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}    

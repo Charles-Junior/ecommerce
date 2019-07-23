@@ -58,7 +58,7 @@
                                             </form>
                                         </td>
                                         <td> {{ infos.prix|total(quantite[infos.id]) }} €</td>
-                                        <td><a href="{{ path('deletePanier',{'id': infos.id}) }}"><i class="icon-trash"></i></a></td>   
+                                        <td><a href="{{ path('deletePanier',{'id': infos.id}) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer le produit du panier ?')"><i class="icon-trash"></i></a></td>   
                                     </tr>
                                     {% set totalHt = totalHt + infos.prix|total(quantite[infos.id]) %}
                                     {% set totalTtc = totalTtc + infos.prix|total(quantite[infos.id])|tva(infos.tva.multiplicate) %}
